@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --hot --open Chrome.exe",
-    "build": "webpack --mode production",
+    "build": "webpack",
     "lint": "eslint ./ --fix",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",

@@ -8,6 +8,8 @@
     "start": "webpack serve --hot --open Chrome.exe",
     "build": "webpack --mode production",
     "lint": "eslint ./ --fix",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "ghdeploy": "npm build && gh-pages -d dist"
   },
   "repository": {
@@ -67,5 +69,5 @@
   "bugs": {
     "url": "https://github.com/kkan0615/react-typescript-nekobooks/issues"
   },
-  "homepage": "https://github.com/kkan0615/react-typescript-nekobooks#readme"
+  "homepage": "https://kkan0615.github.io/react-typescript-nekobooks"
 }

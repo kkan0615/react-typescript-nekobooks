@@ -20,7 +20,7 @@ const RouterIndex: React.FC = () => {
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/home" exact>
+        <Route path="/home">
           <Home />
         </Route>
         <Route path="*">

@@ -46,7 +46,7 @@ const config: webpack.Configuration = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/dist/',
+    publicPath: 'dist',
   },
   devServer: {
     historyApiFallback: true,

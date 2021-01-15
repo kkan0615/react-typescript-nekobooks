@@ -1,6 +1,7 @@
 import path from 'path'
 import webpack from 'webpack'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+import HtmlWebPackPlugin from 'html-webpack-plugin'
 
 const config: webpack.Configuration = {
   entry: './src/index.tsx',
@@ -60,6 +61,10 @@ const config: webpack.Configuration = {
       eslint: {
         files: './src/**/*',
       },
+    }),
+    new HtmlWebPackPlugin({
+      template: './build/index.html',
+      filename: './index.html',
     }),
   ],
 }

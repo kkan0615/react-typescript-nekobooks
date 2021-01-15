@@ -44,7 +44,7 @@ const config: webpack.Configuration = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/',
   },

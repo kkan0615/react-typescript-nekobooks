@@ -7,30 +7,10 @@ export const ThemeContext = React.createContext((themeName: string) => {})
 
 const ThemeProvider: React.FC = props => {
   // State to hold the selected theme name
-  const [themeName, setThemeName] = useState('darkTheme')
-
-  // const useStyles = makeStyles(theme => ({
-  //   root: {
-  //     height: '100%',
-  //     background: theme.palette.background.default,
-  //   },
-  //   menuIconButton: {
-  //     marginRight: theme.spacing(2),
-  //   },
-  //   menuTitle: {
-  //     flexGrow: 5,
-  //   },
-  //   menuButton: {
-  //     marginRight: theme.spacing(2),
-  //     flexGrow: 1,
-  //     display: 'flex',
-  //   },
-  // }))
-
-  // const classes = useStyles()
+  const [themeName, setThemeName] = useState('lightTheme')
 
   useEffect(() => {
-    localStorage.setItem('MyThemingApp', themeName)
+    localStorage.setItem('savedCurrentTheme', themeName)
   }, [themeName])
 
   const { children } = props

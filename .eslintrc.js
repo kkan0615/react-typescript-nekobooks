@@ -45,6 +45,7 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['off'],
     'no-unused-vars': 'off',
+    'max-len': ['error', { code: 200 }],
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
   },

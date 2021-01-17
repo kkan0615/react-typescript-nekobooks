@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { useHistory } from 'react-router-dom'
+/** Components */
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
+import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
+import { defaultLayoutRouters } from '../../router/modules/index'
 
 /** MaxWidth of appBar and content -> it makes content position center */
-const maxWidth = '960px'
+const maxWidth = 1000
 
 /** Style of page with material ui */
 const useStyles = makeStyles(theme => ({
@@ -20,19 +24,34 @@ const useStyles = makeStyles(theme => ({
     maxWidth,
     margin: theme.spacing(0, 'auto'),
   },
-  mainToolBar: {
+  toolBar: {
     color: theme.palette.text.secondary,
     padding: theme.spacing(0),
   },
+  menuAppBar: {
+    maxWidth: maxWidth + 25,
+    margin: theme.spacing(0, 'auto'),
+  },
   title: {
     flexGrow: 1,
-    display: 'none',
+    display: 'block',
+    fontWeight: 600,
     [theme.breakpoints.up('sm')]: {
       display: 'block',
+    },
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: theme.spacing(2),
     },
   },
   loginButton: {
     color: theme.palette.text.secondary,
+  },
+  menuIcon: {
+    fontWeight: 600,
+  },
+  linkButton: {
+    fontSize: 16,
+    fontWeight: 600,
   },
   content: {
     maxWidth,
@@ -42,7 +61,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const DefaultLayout: React.FC = props => {
+  /** Props */
   const { children } = props
+
+  /** Router (history) */
+  const history = useHistory()
 
   /** States */
   const classes = useStyles()
@@ -61,9 +84,9 @@ const DefaultLayout: React.FC = props => {
           variant="elevation"
         >
           <Toolbar
-            className={classes.mainToolBar}
+            className={classes.toolBar}
           >
-            <Typography className={classes.title} variant="h6" noWrap>
+            <Typography className={classes.title} variant="h5" noWrap>
               {title}
             </Typography>
             <Button color="inherit" variant="outlined" disableElevation>
@@ -77,6 +100,36 @@ const DefaultLayout: React.FC = props => {
             >
               <AccountCircle />
             </IconButton>
+          </Toolbar>
+        </AppBar>
+        <AppBar
+          className={classes.menuAppBar}
+          elevation={0}
+          position="relative"
+          variant="elevation"
+        >
+          <Toolbar
+            className={classes.toolBar}
+            variant="dense"
+          >
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              color="inherit"
+              className={classes.menuIcon}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Button className={classes.linkButton} color="inherit">
+              New
+            </Button>
+            <Button className={classes.linkButton} color="inherit">
+              Best
+            </Button>
+            <Button className={classes.linkButton} color="inherit">
+              Created
+            </Button>
           </Toolbar>
         </AppBar>
       </div>

@@ -51,7 +51,7 @@ const config: webpack.Configuration = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: path.join(__dirname, 'build'),
+    contentBase: path.join(__dirname, 'public'),
     compress: true,
     port: 8080,
   },
@@ -63,7 +63,7 @@ const config: webpack.Configuration = {
       },
     }),
     new HtmlWebPackPlugin({
-      template: './build/index.html',
+      template: './public/index.html',
       filename: './index.html',
     }),
   ],

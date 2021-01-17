@@ -1,7 +1,6 @@
 import path from 'path'
 import webpack from 'webpack'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
-import HtmlWebPackPlugin from 'html-webpack-plugin'
 
 const config: webpack.Configuration = {
   entry: './src/index.tsx',
@@ -28,12 +27,21 @@ const config: webpack.Configuration = {
       // },
       {
         test: /\.scss$/,
+        exclude: /node_modules/,
         use: [
           'style-loader', // creates style nodes from JS strings
           'css-loader', // translates CSS into CommonJS
           'sass-loader', // compiles Sass to CSS, using Node Sass by default
         ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
         exclude: /node_modules/,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       },
     ],
   },
@@ -51,7 +59,7 @@ const config: webpack.Configuration = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: path.join(__dirname, 'build'),
+    contentBase: path.join(__dirname, 'public'),
     compress: true,
     port: 8080,
   },
@@ -59,12 +67,8 @@ const config: webpack.Configuration = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
       eslint: {
-        files: './src/**/*',
+        files: './src/**/*.{ts,tsx,js,jsx}',
       },
-    }),
-    new HtmlWebPackPlugin({
-      template: './build/index.html',
-      filename: './index.html',
     }),
   ],
 }

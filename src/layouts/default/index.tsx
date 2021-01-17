@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import { defaultLayoutRouters } from '../../router/modules/index'
+import logo from '../../assets/images/logo/logo.png'
 
 /** MaxWidth of appBar and content -> it makes content position center */
 const maxWidth = 1000
@@ -32,10 +33,15 @@ const useStyles = makeStyles(theme => ({
     maxWidth: maxWidth + 25,
     margin: theme.spacing(0, 'auto'),
   },
+  logo: {
+    width: 36,
+  },
   title: {
     flexGrow: 1,
+    width: '100%',
     display: 'block',
     fontWeight: 600,
+    cursor: 'pointer',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -72,6 +78,15 @@ const DefaultLayout: React.FC = props => {
   /* @TODO: Change to config title */
   const title = useState('Nekobooks'.toUpperCase())
 
+  const handleMenuMove = (name: string) => {
+    const found = defaultLayoutRouters.find(router => router.name.toLowerCase() === name.toLowerCase())
+    if (!found || !found.path) {
+      return
+    }
+
+    history.push(found.path.toString())
+  }
+
   return (
     <div>
       <div
@@ -86,10 +101,11 @@ const DefaultLayout: React.FC = props => {
           <Toolbar
             className={classes.toolBar}
           >
-            <Typography className={classes.title} variant="h5" noWrap>
+            <Typography className={classes.title} variant="h5" noWrap onClick={() => history.push('/')}>
+              <img className={classes.logo} src={logo} alt="logo" />
               {title}
             </Typography>
-            <Button color="inherit" variant="outlined" disableElevation>
+            <Button color="inherit" variant="outlined" disableElevation onClick={event => console.log(event)}>
               Login
             </Button>
             <IconButton
@@ -97,6 +113,7 @@ const DefaultLayout: React.FC = props => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               color="inherit"
+              onClick={() => { console.log('Account has been clicked') }}
             >
               <AccountCircle />
             </IconButton>
@@ -121,7 +138,7 @@ const DefaultLayout: React.FC = props => {
             >
               <MenuIcon />
             </IconButton>
-            <Button className={classes.linkButton} color="inherit">
+            <Button className={classes.linkButton} color="inherit" onClick={() => handleMenuMove('Books')}>
               New
             </Button>
             <Button className={classes.linkButton} color="inherit">

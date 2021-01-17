@@ -1,6 +1,8 @@
 import path from 'path'
 import webpack from 'webpack'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+import HtmlWebPackPlugin from 'html-webpack-plugin'
+import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 
 const config: webpack.Configuration = {
   entry: './src/index.tsx',
@@ -20,11 +22,6 @@ const config: webpack.Configuration = {
           },
         },
       },
-      // {
-      //   test: /\.tsx?$/,
-      //   use: 'ts-loader',
-      //   exclude: /node_modules/,
-      // },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
@@ -69,6 +66,14 @@ const config: webpack.Configuration = {
       eslint: {
         files: './src/**/*.{ts,tsx,js,jsx}',
       },
+    }),
+    new CleanWebpackPlugin({
+      verbose: true,
+    }),
+    new HtmlWebPackPlugin({
+      inject: false,
+      template: './public/index.html',
+      filename: './index.html',
     }),
   ],
 }

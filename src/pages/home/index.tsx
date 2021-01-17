@@ -21,7 +21,6 @@ const HomeIndex: React.FC = () => {
       >
         Test button
       </Button>
-      <button type="button">Test 2</button>
       {myFirstMessage}
     </div>
   )

@@ -9,7 +9,8 @@ import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-import { defaultLayoutRouters } from '../../router/modules/index'
+import DarkModeController from './appBar/darkModeController'
+import { defaultLayoutRouters } from '../../router/modules'
 import logo from '../../assets/images/logo/logo.png'
 
 /** MaxWidth of appBar and content -> it makes content position center */
@@ -105,6 +106,7 @@ const DefaultLayout: React.FC = props => {
               <img className={classes.logo} src={logo} alt="logo" />
               {title}
             </Typography>
+            <DarkModeController />
             <Button color="inherit" variant="outlined" disableElevation onClick={event => console.log(event)}>
               Login
             </Button>
@@ -139,10 +141,10 @@ const DefaultLayout: React.FC = props => {
               <MenuIcon />
             </IconButton>
             <Button className={classes.linkButton} color="inherit" onClick={() => handleMenuMove('Books')}>
-              New
-            </Button>
-            <Button className={classes.linkButton} color="inherit">
               Best
+            </Button>
+            <Button className={classes.linkButton} color="inherit" onClick={() => handleMenuMove('Books')}>
+              New
             </Button>
             <Button className={classes.linkButton} color="inherit">
               Created
